@@ -1,0 +1,30 @@
+{
+  "schema": "tacp_porto_rsu_grid_v1",
+  "description": "Simulation RSU grid used to map Porto GPS fixes to contact windows.",
+  "source_kind": "simulation_assumption",
+  "coordinate_system": "WGS84 longitude/latitude",
+  "assignment_rule": "nearest_rsu_within_radius; ties by distance then rsu_id",
+  "coverage_radius_m": 1500.0,
+  "rsus": [
+    {"rsu_id": "p00", "lon": -8.70, "lat": 41.120, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p01", "lon": -8.67, "lat": 41.120, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p02", "lon": -8.64, "lat": 41.120, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p03", "lon": -8.61, "lat": 41.120, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p04", "lon": -8.58, "lat": 41.120, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p10", "lon": -8.70, "lat": 41.145, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p11", "lon": -8.67, "lat": 41.145, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p12", "lon": -8.64, "lat": 41.145, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p13", "lon": -8.61, "lat": 41.145, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p14", "lon": -8.58, "lat": 41.145, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p20", "lon": -8.70, "lat": 41.170, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p21", "lon": -8.67, "lat": 41.170, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p22", "lon": -8.64, "lat": 41.170, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p23", "lon": -8.61, "lat": 41.170, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p24", "lon": -8.58, "lat": 41.170, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p30", "lon": -8.70, "lat": 41.195, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p31", "lon": -8.67, "lat": 41.195, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p32", "lon": -8.64, "lat": 41.195, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p33", "lon": -8.61, "lat": 41.195, "coverage_radius_m": 1500.0},
+    {"rsu_id": "p34", "lon": -8.58, "lat": 41.195, "coverage_radius_m": 1500.0}
+  ]
+}

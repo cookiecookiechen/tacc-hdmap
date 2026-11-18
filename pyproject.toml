@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trajectory-coded-sim"
+version = "0.1.0"
+description = "Event-driven simulator for trajectory-aware coded placement and recovery"
+requires-python = ">=3.10,<3.11"
+readme = "README.md"
+dependencies = [
+  "simpy==4.1.2",
+  "reedsolo==1.7.0",
+  "PyYAML==6.0.3",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

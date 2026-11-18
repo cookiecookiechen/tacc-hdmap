@@ -1,0 +1,49 @@
+{
+  "schema": "highd_small_v3",
+  "dataset": "highd",
+  "mode": "small",
+  "frozen_before_baseline_outcomes": true,
+  "full_sweep": false,
+  "recordings": ["01", "02", "03"],
+  "cars_per_recording": 32,
+  "selection": {
+    "rule": "first eligible cars by numeric track ID within each recording",
+    "class": "Car",
+    "minimum_duration_s": 8.0,
+    "require_contiguous_frames": true,
+    "exclude_recording_boundary_tracks": true,
+    "exclude_zero_contact_tracks": false
+  },
+  "rsu_rule": {
+    "x_bounds": "bounding-box centre extrema over all input tracks in each recording",
+    "x_fractions": [0.25, 0.5, 0.75],
+    "y_rule": "midpoint of outermost upper/lower lane markings",
+    "radius_fraction_of_x_span": 0.1,
+    "coverage": "nonoverlapping circles"
+  },
+  "input_dir": "data/processed/highd_small_v3",
+  "provenance": "data/processed/highd_small_v3/provenance.json",
+  "rate_bps": 8000000,
+  "object_bytes": 1000000,
+  "n": 4,
+  "k": 3,
+  "storage_capacity_bytes": 2000000,
+  "ttl_s": [3.0, 5.0, 8.0],
+  "loss_probability": [0.0, 0.1],
+  "failure_probability": 0.0,
+  "seeds": [101, 137, 173, 211, 257],
+  "episodes": 1,
+  "cells": 6,
+  "vehicles": 96,
+  "methods": ["B1_full_replication", "B5_freshness_aware_uncoded_caching", "B7_proposed_algorithm1_algorithm2", "B7_runtime_rank_aware", "B8_static_rlnc_fountain", "B9_contact_frequency_coded", "A1_no_trajectory", "A2_no_rank_aware"],
+  "expected_rows": 23040,
+  "calibration": "leave target vehicle out; same recording only; frozen recording-specific RSU universe",
+  "statistics": {
+    "primary": "P_fresh",
+    "cluster_unit": "recording",
+    "bootstrap": "paired recording clusters retaining all vehicles, cells and seeds; exploratory CI with only three recordings at one location",
+    "resamples": 2000,
+    "small_validation_gate": "technical completeness and geometry/metric invariants only; no claim of population statistical stability"
+  },
+  "interpretation": "separate short-contact highway supplement; never pool with Porto 54/486 cells"
+}

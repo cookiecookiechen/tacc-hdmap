@@ -1,0 +1,193 @@
+{
+  "bootstrap": {
+    "confidence": 0.95,
+    "estimator": "trip-weighted ratio of sums; whole physical taxi or recording resampled with all cases and fixed seeds retained",
+    "samples": 2000,
+    "seed": 20261018
+  },
+  "concurrency_limits": {
+    "porto_full": 12,
+    "porto_pilot": 6
+  },
+  "datasets": {
+    "highd": {
+      "budget": {
+        "small": {
+          "cells": 6,
+          "rows": 23040
+        }
+      },
+      "cluster_unit": "recording",
+      "config_path": "configs/highd_small_v3.yaml",
+      "expected_cluster_count": 3,
+      "expected_vehicle_count": 96,
+      "gate_policy": "technical_only_small_validation",
+      "selection": "recordings01,02,03; first32 eligible cars each; one highway location",
+      "source_hashes": {
+        "configs/highd_small_v3.yaml": "cdc8e0654eb0279ec115f443b86ca5228b3f366099923a2e32c121ee8200d72b",
+        "data/processed/highd_small_v3/01_contacts.csv": "5cd1657177848347b0bad6f074ac01e36b1bbd64aed086c7da16b4230d7b1599",
+        "data/processed/highd_small_v3/01_rsus.json": "de6b7130d1729a40663c8af727adcb4f2521a6c79a6577de520dd16739843a44",
+        "data/processed/highd_small_v3/01_selection.json": "cc820b369248de0494bc46ac190d6721c92f71ef72a6bb31dfc75c01b6db9677",
+        "data/processed/highd_small_v3/02_contacts.csv": "049c911673d45e7b1cd4b9daf0d70ab9852a2dfabcbb43255e4fc18fc0bcfc5f",
+        "data/processed/highd_small_v3/02_rsus.json": "53d193bcf15707627dfde2aad8aeb683a5e6a846b94ba2bd278c9d6a25f6f702",
+        "data/processed/highd_small_v3/02_selection.json": "e7e3c0fb40d69215ba28fc7d3a0416601de1927c6116572652fb127e7c59fb49",
+        "data/processed/highd_small_v3/03_contacts.csv": "d30e93e19b9aff201e62728bd48ab1941e02527209b6a4466aef16563d8bcd5c",
+        "data/processed/highd_small_v3/03_rsus.json": "ce0805ab8df11eb25d64dc9883ec18eacbaab260cc6d5201fb7705a0931e537f",
+        "data/processed/highd_small_v3/03_selection.json": "56fab4d90ac7303a6aa7a5fe0628cf6e37729047ba39e4576ed25f8c420695b7"
+      }
+    },
+    "porto": {
+      "budget": {
+        "dry-run": {
+          "cells": 3,
+          "rows": 96
+        },
+        "full": {
+          "cells": 486,
+          "rows": 7464960
+        },
+        "pilot": {
+          "cells": 54,
+          "rows": 1105920
+        }
+      },
+      "calibration_B9": "exclude all trips of the target physical taxi, estimate RSU visit frequencies from remaining trips; cross-fitted not time-causal",
+      "cluster_unit": "physical_taxi",
+      "dry_run_vehicle_ids": [
+        "taxi_20000608_trip_1372670663620000608",
+        "taxi_20000455_trip_1372654295620000455"
+      ],
+      "expected_cluster_count": 256,
+      "expected_vehicle_count": 512,
+      "gate_policy": "technical checks and original .10 CI-width / .20 seed-range limits for every registered method/subset/aggregate",
+      "legacy_full_plan_hash": "d5def827205102da46563caad2f19e8875859e2986b9127e4357d6e0ff7af76f",
+      "legacy_plan_path": "results/processed/full_sweep_plan.json",
+      "provenance_path": "data/processed/porto_taxi_independent_v3_2.provenance.json",
+      "rsu_map_path": "data/raw/porto_rsus_phase4_large.json",
+      "selection": "Exclude all occurrences of duplicated numeric TRIP_ID; first two eligible unique-ID trips per taxi, then the first 256 taxis by the unchanged fixed SHA256 salt. Balanced replacement sample; no outcomes used.",
+      "selection_manifest_path": "data/processed/porto_taxi_independent_v3_2.selection.json",
+      "selection_rules_path": "configs/porto_independent_v3_2a_selection.json",
+      "source_hashes": {
+        "configs/porto_independent_v3_2a_selection.json": "f9c153dc7a73f96ac94ab31bd4b38a157eb5d284c5dab1de52a3973909e84ff0",
+        "data/processed/porto_taxi_independent_v3_2.csv": "ac763220a6279a6058f3d0fda6b84f8ccb4e86c0831bffc6fbc80297c9406983",
+        "data/processed/porto_taxi_independent_v3_2.provenance.json": "5774d7033b469c27b86a93a30ce6428916ec53994d1feaeb9a5a339326ae36a2",
+        "data/processed/porto_taxi_independent_v3_2.selection.json": "f1e221ce5940c3e7efddb9be4e1029cde65e768776f5116430726526c79ca6e9",
+        "data/raw/porto_rsus_phase4_large.json": "42e1c3832146f946f6a8268a60de617eb59da5d8da7b49a032d4a7223afc5ec9",
+        "results/processed/full_sweep_plan.json": "dc19d42d6746935201e510d5ba95fda5084657f31d3feed1ed3e1f89f769ac20",
+        "scripts/prepare_porto_independent.py": "4db98b990e0c6449dc0d3ff098c0612f7cd9c508a6691584c5b242b9348ec81b",
+        "scripts/prepare_porto_trace.py": "a639df3138468218c20a49970c1eee815111a45eff46a508e5cac4f9025e1684",
+        "scripts/prepare_release_inputs.py": "083942ca7b8b3eca034fbe829e08f92603523e36aea63e63b2ad2c8077040085"
+      },
+      "trace_override": true,
+      "trace_path": "data/processed/porto_taxi_independent_v3_2.csv",
+      "trips_per_cluster": 2
+    }
+  },
+  "episodes": [
+    0
+  ],
+  "experiment_revision": "v3.2-public-reproduction",
+  "failure_policy": "Preserve all outcomes and failed gates. Never relax precision thresholds or remove unfavorable cells, methods or seeds to unlock full. highD small intervals are exploratory, not population precision certification.",
+  "frozen": true,
+  "full_requires": [
+    "porto_dry_run_technical_pass",
+    "porto_pilot_technical_and_statistical_pass",
+    "highd_small_technical_pass"
+  ],
+  "method_semantics": {
+    "A1": "Remove trajectory-aware placement using the same global shuffled order as B8 and uniform prior; store min(k,floor(capacity/shard_bytes)) symbols; retain corrected runtime rank-aware requests and deadline gate.",
+    "A2": "Same deadline-capacity-feasible Algorithm 1 as B7, without request-time rank filtering; must exactly match B7 original request policy.",
+    "B7_legacy": "B7 original request policy, with opt-in deadline-capacity-feasible Algorithm 1 in this revision; historical legacy placement remains available by omitting the new option.",
+    "B7_runtime": "Same deadline-capacity-feasible Algorithm 1 as B7, with request-time rank filtering.",
+    "B8": "RSU-only static finite-n GF(256) RLNC abstraction, not actual Fountain or a literal paper reproduction. Uniform shuffled order over 20 RSUs in Porto or 3 RSUs per recording in highD with experiment seed plus fixed salt, shared with A1 and independent of target/cell; seeded coefficients; no trajectory ordering, TTL utility, migration or repair.",
+    "B9": "Leave all trips of target physical taxi out in Porto; leave target vehicle out within recording in highD. Same v2 finite-MDS expected-capped-rank placement; no target window order or TTL utility."
+  },
+  "methods": {
+    "dry-run": [
+      "B1_full_replication",
+      "B5_freshness_aware_uncoded_caching",
+      "B7_proposed_algorithm1_algorithm2",
+      "B7_runtime_rank_aware",
+      "B8_static_rlnc_fountain",
+      "B9_contact_frequency_coded",
+      "A1_no_trajectory",
+      "A2_no_rank_aware"
+    ],
+    "full": [
+      "B1_full_replication",
+      "B5_freshness_aware_uncoded_caching",
+      "B7_proposed_algorithm1_algorithm2",
+      "B7_runtime_rank_aware",
+      "B8_static_rlnc_fountain",
+      "B9_contact_frequency_coded"
+    ],
+    "pilot": [
+      "B1_full_replication",
+      "B5_freshness_aware_uncoded_caching",
+      "B7_proposed_algorithm1_algorithm2",
+      "B7_runtime_rank_aware",
+      "B8_static_rlnc_fountain",
+      "B9_contact_frequency_coded",
+      "A1_no_trajectory",
+      "A2_no_rank_aware"
+    ],
+    "small": [
+      "B1_full_replication",
+      "B5_freshness_aware_uncoded_caching",
+      "B7_proposed_algorithm1_algorithm2",
+      "B7_runtime_rank_aware",
+      "B8_static_rlnc_fountain",
+      "B9_contact_frequency_coded",
+      "A1_no_trajectory",
+      "A2_no_rank_aware"
+    ]
+  },
+  "placement_model": "deadline_capacity_v3_1",
+  "random_model": "keyed_v3",
+  "random_semantics": {
+    "failure": "independent isolated trip per seed, vehicle_id, episode, actual RSU ID; fixed for entire trip",
+    "notes": "Ordinal pairing is a variance reduction device, not a measured physical channel trace; method/cell/shard not in key.",
+    "packet": "independent stream; seed, vehicle_id, episode, actual RSU ID, contact boundaries, actual within-contact attempt ordinal",
+    "paired_across_methods": true
+  },
+  "release": {
+    "highd_inputs": "requires_licensed_archive",
+    "historical_protocol_path": "results/reference/protocol.json",
+    "historical_protocol_sha256": "edc2f9c328a39167af6c4c93d4ca2950f9bd4b9509cf0c211cd630611ded5957",
+    "identity_note": "Public reruns use this release source identity. Published raw records retain their original protocol, plan and run identities; never combine their checkpoints with a new rerun.",
+    "schema": "tacp-public-reproduction-v1"
+  },
+  "revision_reason": "Public source release with portable metadata and independently identified reruns; simulation parameters, methods, seeds and statistics retain the published v3.2 specification.",
+  "schema": "tacp-related-work-protocol-v3",
+  "seeds": [
+    101,
+    137,
+    173,
+    211,
+    257
+  ],
+  "stability": {
+    "max_ci_width": 0.1,
+    "max_seed_range": 0.2,
+    "requires_positive_effect": false,
+    "scope": "each_prespecified_subset_and_aggregate"
+  },
+  "subsets": {
+    "S1_opportunity": {
+      "packet_loss": 0.0,
+      "placement_capacity_bytes": 96,
+      "ttl_s": 1200.0
+    },
+    "S2_stress": {
+      "packet_loss": 0.1,
+      "placement_capacity_bytes": 24,
+      "ttl_s": 300.0
+    },
+    "S3_middle": {
+      "packet_loss": 0.05,
+      "placement_capacity_bytes": 48,
+      "ttl_s": 600.0
+    }
+  },
+  "total_new_row_budget_including_conditional_full": 8594016
+}

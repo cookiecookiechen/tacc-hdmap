@@ -1,0 +1,72 @@
+{
+  "schema": "tacp_porto_independent_selection_rules_v1",
+  "frozen": true,
+  "revision": "v3.2a-independent-taxi-expansion-unique-trip-ids",
+  "source_sha256": "2891d03ea99ce0fc203daedd434848a1a8baa7a8fb6da10f8d7ff26559efff6d",
+  "rsu_config_path": "data/raw/porto_rsus_phase4_large.json",
+  "rsu_config_sha256": "42e1c3832146f946f6a8268a60de617eb59da5d8da7b49a032d4a7223afc5ec9",
+  "expected_rsu_count": 20,
+  "target_taxis": 256,
+  "trips_per_taxi": 2,
+  "max_expansion_rounds": 1,
+  "trip_order": "ascending_numeric_TRIP_ID",
+  "taxi_order": "ascending_sha256_utf8_salt_plus_canonical_TAXI_ID_then_numeric_TAXI_ID",
+  "taxi_hash_salt": "tacp-porto-independent-taxi-v3.2:",
+  "min_points": 8,
+  "min_covered_points": 4,
+  "sample_interval_s": 15.0,
+  "rsu_assignment_rule": "nearest_rsu_within_radius; ties by distance then rsu_id",
+  "missing_data_policy": "retain rows whose POLYLINE meets min_points; record MISSING_DATA flag",
+  "time_window": null,
+  "selection_scope": "whole frozen source; exclude all occurrences of every duplicated numeric TRIP_ID; then first two coverage-eligible unique-ID trips per physical taxi, followed by unchanged hash-ranked taxi selection; no outcome-based selection",
+  "limitations": "Earliest eligible trips favor early observation dates; the sample is not uniform over calendar time. This is a new balanced sample, not an append to the old trip sample. The target population is taxis with at least two eligible trips whose numeric TRIP_ID occurs exactly once in the full source; this filter may affect taxi representation.",
+  "seeds_unchanged": [
+    101,
+    137,
+    173,
+    211,
+    257
+  ],
+  "bootstrap_unchanged": {
+    "samples": 2000,
+    "seed": 20261018,
+    "confidence": 0.95
+  },
+  "stability_unchanged": {
+    "max_ci_width": 0.1,
+    "max_seed_range": 0.2
+  },
+  "budget": {
+    "trips": 512,
+    "dry_run": {
+      "cells": 3,
+      "trips": 2,
+      "seeds": 2,
+      "methods": 8,
+      "rows": 96
+    },
+    "pilot": {
+      "cells": 54,
+      "seeds": 5,
+      "methods": 8,
+      "rows": 1105920
+    },
+    "conditional_full": {
+      "cells": 486,
+      "seeds": 5,
+      "methods": 6,
+      "rows": 7464960
+    }
+  },
+  "stop_policy": "Stop on a source/RSU hash mismatch, fewer than target_taxis qualifying taxis after excluding every occurrence of duplicated numeric TRIP_ID values, invalid rows, or an existing output path. This is the sole pre-simulation data quality amendment; preserve the original freeze and failed attempt, and do not revise the rule again. Run one expanded pilot only; do not add taxis, trips, seeds, methods, datasets or parameter cells after viewing outcomes, and do not relax the statistical gate. Full requires the unchanged pilot gate to pass. Preserve all historical outputs.",
+  "duplicate_trip_policy": "exclude_all_occurrences",
+  "data_quality_amendment": {
+    "number": 1,
+    "max_amendments": 1,
+    "timing": "before_any_new_simulation_results",
+    "supersedes_rules_path": "configs/porto_independent_v3_2_selection.json",
+    "preserve_prior_freeze_and_failure": true,
+    "no_further_rule_revisions": true,
+    "reason": "The frozen original UCI source contains repeated numeric TRIP_ID values. The original strict rule stopped without producing a new sample or simulation result. Exclude every occurrence of every repeated numeric ID, including identical and conflicting rows, without preferring a record by position, coverage, taxi, or outcome."
+  }
+}

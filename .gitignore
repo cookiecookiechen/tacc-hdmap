@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.DS_Store
+._*
+.env
+.env.*
+*.log
+*.tmp
+# Restricted trajectory inputs and generated simulation output.
+data/raw/highd*/
+data/processed/highd_small_v3/
+data/source/
+results/processed/*
+!results/processed/full_sweep_plan.json
+results/reproduced/
